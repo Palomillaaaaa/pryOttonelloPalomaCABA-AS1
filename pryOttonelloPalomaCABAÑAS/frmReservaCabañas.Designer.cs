@@ -45,16 +45,19 @@
             cmbTarjeta = new ComboBox();
             lblTarjeta = new Label();
             gbpTitulardelaReserva = new GroupBox();
-            txtTelefono = new TextBox();
+            mtbTelefono = new MaskedTextBox();
             txtNombre = new TextBox();
             lblTelefono = new Label();
             lblNombre = new Label();
             btnAceptar = new Button();
             btnCancelar = new Button();
+            gpbResultados = new GroupBox();
+            lblResultados = new Label();
             gpbTipodeCabañas.SuspendLayout();
             gpbAdicionales.SuspendLayout();
             gpbFormasdePago.SuspendLayout();
             gbpTitulardelaReserva.SuspendLayout();
+            gpbResultados.SuspendLayout();
             SuspendLayout();
             // 
             // gpbTipodeCabañas
@@ -219,7 +222,6 @@
             // cmbTarjeta
             // 
             cmbTarjeta.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbTarjeta.FlatStyle = FlatStyle.Flat;
             cmbTarjeta.FormattingEnabled = true;
             cmbTarjeta.Items.AddRange(new object[] { "Blue Card", "Red Card", "Green Card" });
             cmbTarjeta.Location = new Point(320, 94);
@@ -239,23 +241,25 @@
             // 
             // gbpTitulardelaReserva
             // 
-            gbpTitulardelaReserva.Controls.Add(txtTelefono);
+            gbpTitulardelaReserva.Controls.Add(mtbTelefono);
             gbpTitulardelaReserva.Controls.Add(txtNombre);
             gbpTitulardelaReserva.Controls.Add(lblTelefono);
             gbpTitulardelaReserva.Controls.Add(lblNombre);
             gbpTitulardelaReserva.Location = new Point(33, 445);
             gbpTitulardelaReserva.Name = "gbpTitulardelaReserva";
-            gbpTitulardelaReserva.Size = new Size(1022, 222);
+            gbpTitulardelaReserva.Size = new Size(1022, 176);
             gbpTitulardelaReserva.TabIndex = 3;
             gbpTitulardelaReserva.TabStop = false;
             gbpTitulardelaReserva.Text = "Titular de la Reserva";
             // 
-            // txtTelefono
+            // mtbTelefono
             // 
-            txtTelefono.Location = new Point(118, 116);
-            txtTelefono.Name = "txtTelefono";
-            txtTelefono.Size = new Size(434, 31);
-            txtTelefono.TabIndex = 13;
+            mtbTelefono.Location = new Point(120, 116);
+            mtbTelefono.Mask = "(999)000-0000";
+            mtbTelefono.Name = "mtbTelefono";
+            mtbTelefono.Size = new Size(434, 31);
+            mtbTelefono.TabIndex = 14;
+            mtbTelefono.MaskInputRejected += mtbTelefono_MaskInputRejected;
             // 
             // txtNombre
             // 
@@ -285,7 +289,7 @@
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(943, 683);
+            btnAceptar.Location = new Point(957, 627);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.Size = new Size(112, 34);
             btnAceptar.TabIndex = 14;
@@ -295,7 +299,7 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(816, 683);
+            btnCancelar.Location = new Point(831, 627);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(112, 34);
             btnCancelar.TabIndex = 15;
@@ -303,11 +307,31 @@
             btnCancelar.UseVisualStyleBackColor = true;
             btnCancelar.Click += btmCancelar_Click;
             // 
+            // gpbResultados
+            // 
+            gpbResultados.Controls.Add(lblResultados);
+            gpbResultados.Location = new Point(33, 647);
+            gpbResultados.Name = "gpbResultados";
+            gpbResultados.Size = new Size(724, 133);
+            gpbResultados.TabIndex = 16;
+            gpbResultados.TabStop = false;
+            gpbResultados.Text = "Total a Pagar";
+            // 
+            // lblResultados
+            // 
+            lblResultados.BackColor = SystemColors.ControlLightLight;
+            lblResultados.BorderStyle = BorderStyle.Fixed3D;
+            lblResultados.Location = new Point(15, 27);
+            lblResultados.Name = "lblResultados";
+            lblResultados.Size = new Size(671, 89);
+            lblResultados.TabIndex = 0;
+            // 
             // frmReservaCabañas
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1198, 794);
+            ClientSize = new Size(1255, 851);
+            Controls.Add(gpbResultados);
             Controls.Add(btnCancelar);
             Controls.Add(btnAceptar);
             Controls.Add(gbpTitulardelaReserva);
@@ -324,6 +348,7 @@
             gpbFormasdePago.PerformLayout();
             gbpTitulardelaReserva.ResumeLayout(false);
             gbpTitulardelaReserva.PerformLayout();
+            gpbResultados.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -347,10 +372,12 @@
         private Label lblTelefono;
         private Label lblNombre;
         private TextBox txtNombre;
-        private TextBox txtTelefono;
         private Button btnAceptar;
         private Button btnCancelar;
         private RadioButton rbmTarjeta;
         private RadioButton rbmEfectivo;
+        private MaskedTextBox mtbTelefono;
+        private GroupBox gpbResultados;
+        private Label lblResultados;
     }
 }
