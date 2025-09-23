@@ -44,16 +44,13 @@
             rbmEfectivo = new RadioButton();
             cmbTarjeta = new ComboBox();
             lblTarjeta = new Label();
-            label1 = new Label();
             gbpTitulardelaReserva = new GroupBox();
             txtTelefono = new TextBox();
             txtNombre = new TextBox();
-            label3 = new Label();
-            label2 = new Label();
             lblTelefono = new Label();
             lblNombre = new Label();
-            bmtAceptar = new Button();
-            btmCancelar = new Button();
+            btnAceptar = new Button();
+            btnCancelar = new Button();
             gpbTipodeCabañas.SuspendLayout();
             gpbAdicionales.SuspendLayout();
             gpbFormasdePago.SuspendLayout();
@@ -78,12 +75,14 @@
             // 
             // cmbDias
             // 
+            cmbDias.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbDias.FormattingEnabled = true;
             cmbDias.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30" });
             cmbDias.Location = new Point(848, 68);
             cmbDias.Name = "cmbDias";
             cmbDias.Size = new Size(77, 33);
             cmbDias.TabIndex = 5;
+            cmbDias.SelectedIndexChanged += cmbDias_SelectedIndexChanged;
             // 
             // lblCantidaddeDias
             // 
@@ -96,12 +95,14 @@
             // 
             // cmbCantidaddePersonas
             // 
+            cmbCantidaddePersonas.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbCantidaddePersonas.FormattingEnabled = true;
             cmbCantidaddePersonas.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8" });
             cmbCantidaddePersonas.Location = new Point(573, 68);
             cmbCantidaddePersonas.Name = "cmbCantidaddePersonas";
             cmbCantidaddePersonas.Size = new Size(77, 33);
             cmbCantidaddePersonas.TabIndex = 3;
+            cmbCantidaddePersonas.SelectedIndexChanged += cmbCantidaddePersonas_SelectedIndexChanged;
             cmbCantidaddePersonas.EnabledChanged += gpbTipodeCabañas_Enter;
             // 
             // lblCantidaddePersonas
@@ -115,6 +116,7 @@
             // 
             // cmbTipodeCabaña
             // 
+            cmbTipodeCabaña.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbTipodeCabaña.FormattingEnabled = true;
             cmbTipodeCabaña.Items.AddRange(new object[] { "A", "B" });
             cmbTipodeCabaña.Location = new Point(139, 68);
@@ -182,7 +184,6 @@
             gpbFormasdePago.Controls.Add(rbmEfectivo);
             gpbFormasdePago.Controls.Add(cmbTarjeta);
             gpbFormasdePago.Controls.Add(lblTarjeta);
-            gpbFormasdePago.Controls.Add(label1);
             gpbFormasdePago.Location = new Point(351, 216);
             gpbFormasdePago.Name = "gpbFormasdePago";
             gpbFormasdePago.Size = new Size(704, 222);
@@ -217,12 +218,15 @@
             // 
             // cmbTarjeta
             // 
+            cmbTarjeta.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbTarjeta.FlatStyle = FlatStyle.Flat;
             cmbTarjeta.FormattingEnabled = true;
             cmbTarjeta.Items.AddRange(new object[] { "Blue Card", "Red Card", "Green Card" });
             cmbTarjeta.Location = new Point(320, 94);
             cmbTarjeta.Name = "cmbTarjeta";
             cmbTarjeta.Size = new Size(287, 33);
             cmbTarjeta.TabIndex = 6;
+            cmbTarjeta.SelectedIndexChanged += cmbTarjeta_SelectedIndexChanged;
             // 
             // lblTarjeta
             // 
@@ -233,20 +237,10 @@
             lblTarjeta.TabIndex = 6;
             lblTarjeta.Text = "Tipo de tarjeta:";
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(232, 179);
-            label1.Name = "label1";
-            label1.Size = new Size(0, 25);
-            label1.TabIndex = 6;
-            // 
             // gbpTitulardelaReserva
             // 
             gbpTitulardelaReserva.Controls.Add(txtTelefono);
             gbpTitulardelaReserva.Controls.Add(txtNombre);
-            gbpTitulardelaReserva.Controls.Add(label3);
-            gbpTitulardelaReserva.Controls.Add(label2);
             gbpTitulardelaReserva.Controls.Add(lblTelefono);
             gbpTitulardelaReserva.Controls.Add(lblNombre);
             gbpTitulardelaReserva.Location = new Point(33, 445);
@@ -265,27 +259,11 @@
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(116, 61);
+            txtNombre.Location = new Point(120, 61);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(434, 31);
             txtNombre.TabIndex = 12;
             txtNombre.TextChanged += textBox1_TextChanged;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(118, 61);
-            label3.Name = "label3";
-            label3.Size = new Size(0, 25);
-            label3.TabIndex = 11;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(3, 27);
-            label2.Name = "label2";
-            label2.Size = new Size(0, 25);
-            label2.TabIndex = 10;
             // 
             // lblTelefono
             // 
@@ -305,31 +283,33 @@
             lblNombre.TabIndex = 8;
             lblNombre.Text = "Nombre:";
             // 
-            // bmtAceptar
+            // btnAceptar
             // 
-            bmtAceptar.Location = new Point(943, 683);
-            bmtAceptar.Name = "bmtAceptar";
-            bmtAceptar.Size = new Size(112, 34);
-            bmtAceptar.TabIndex = 14;
-            bmtAceptar.Text = "Aceptar";
-            bmtAceptar.UseVisualStyleBackColor = true;
+            btnAceptar.Location = new Point(943, 683);
+            btnAceptar.Name = "btnAceptar";
+            btnAceptar.Size = new Size(112, 34);
+            btnAceptar.TabIndex = 14;
+            btnAceptar.Text = "Aceptar";
+            btnAceptar.UseVisualStyleBackColor = true;
+            btnAceptar.Click += btnAceptar_Click;
             // 
-            // btmCancelar
+            // btnCancelar
             // 
-            btmCancelar.Location = new Point(816, 683);
-            btmCancelar.Name = "btmCancelar";
-            btmCancelar.Size = new Size(112, 34);
-            btmCancelar.TabIndex = 15;
-            btmCancelar.Text = "Cancelar";
-            btmCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Location = new Point(816, 683);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(112, 34);
+            btnCancelar.TabIndex = 15;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btmCancelar_Click;
             // 
             // frmReservaCabañas
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1198, 794);
-            Controls.Add(btmCancelar);
-            Controls.Add(bmtAceptar);
+            Controls.Add(btnCancelar);
+            Controls.Add(btnAceptar);
             Controls.Add(gbpTitulardelaReserva);
             Controls.Add(gpbFormasdePago);
             Controls.Add(gpbAdicionales);
@@ -362,17 +342,14 @@
         private CheckBox chkHeladera;
         private CheckBox chkTelevisor;
         private CheckBox chkCocina;
-        private Label label1;
         private ComboBox cmbTarjeta;
         private Label lblTarjeta;
         private Label lblTelefono;
         private Label lblNombre;
         private TextBox txtNombre;
-        private Label label3;
-        private Label label2;
         private TextBox txtTelefono;
-        private Button bmtAceptar;
-        private Button btmCancelar;
+        private Button btnAceptar;
+        private Button btnCancelar;
         private RadioButton rbmTarjeta;
         private RadioButton rbmEfectivo;
     }

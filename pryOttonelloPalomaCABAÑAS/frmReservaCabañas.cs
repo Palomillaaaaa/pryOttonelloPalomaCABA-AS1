@@ -15,42 +15,63 @@ namespace pryOttonelloPalomaCABAÑAS
         public frmReservaCabañas()
         {
             InitializeComponent();
-            
+
 
         }
+
+
+        //Declaración de Variables Globales
+        bool TIPOA = false;
+        bool TIPOB = false;
+        bool COCINA = false;
+        bool HELADERA = false;
+        bool TELEVISOR = false;
+
+        public static decimal PRECIO = 0;
+        int i = 1;
+
         private void InicializarFormulario()
         {
+            //Al inicializar el formulario el boton esta deshabilitado
+            btnAceptar.Enabled = false; 
+
+            //Como van a estar seleccionados los elementos en el combo box- Tipo
             cmbTipodeCabaña.Items.Clear();
-            cmbTipodeCabaña.Items.Add("A");
-            cmbTipodeCabaña.Items.Add("B");
-            cmbTipodeCabaña.SelectedIndex = 0;
+            cmbTipodeCabaña.Items.Add("Tipo A");
+            cmbTipodeCabaña.Items.Add("Tipo B");
+            cmbTipodeCabaña.SelectedIndex = -1;
 
-            //Esto es para que cuente las personas, porque arranca en A
-            cmbCantidaddePersonas.Items.Clear();
-            for (int i = 1; i <= 4; i++) cmbCantidaddePersonas.Items.Add(i);
-            cmbCantidaddePersonas.SelectedIndex = 0;
+            //Como van a estar seleccionados los elementos en el combo box- Tarjeta
+            cmbTarjeta.Items.Clear();
+            cmbTarjeta.Items.Add("Red Card");
+            cmbTarjeta.Items.Add("Blue Card");
+            cmbTarjeta.Items.Add("Green Card");
+            
+            //Inicialización de los textos
+            txtNombre.Text = "";
+            txtTelefono.Text = "";
 
-            //Esto es para el tipo de pago
-            rbmEfectivo.Checked = true;
-            cmbTarjeta.Enabled = false;
+            //Valores de la chk
 
-            //El bóton va a arrancar desactivado
+            chkCocina.Checked = false;  
+            chkHeladera.Checked = false;
+            chkTelevisor.Checked=false;
+           
+            //Valores de radios
 
-            bmtAceptar.Enabled = false;
+            rbmEfectivo.Checked = false;    
+            rbmTarjeta.Checked = false;
 
-            //Los txt van a estar vacios
+            //La fase me va a servir para poder habilitar en cantidad 
+            bool FASE = false;
 
-            txtNombre.Clear();
-            txtTelefono.Clear();
+            i = 1;
+        }
 
-            //Chau adicionales
 
-            chkCocina.Enabled = false;  
-            chkHeladera.Enabled = false;
-            chkTelevisor.Enabled = false; 
-        } 
 
-        
+        //string vTelefono = new string Telefono();
+
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
@@ -78,15 +99,52 @@ namespace pryOttonelloPalomaCABAÑAS
 
         private void cmbTipodeCabaña_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cmbCantidaddePersonas.Items.Clear();
-
-            if (cmbTipodeCabaña.SelectedItem.ToString() == "A")
+            
+            if (cmbTipodeCabaña.Text == "Tipo A")
             {
-                for (int i = 1; i <= 4; i++) cmbCantidaddePersonas.Items.Add(i);
+                TIPOA = true;
             }
             else
-                for (int i = 1; i <= 8; i++) cmbCantidaddePersonas.Items.Add(i);
-            cmbCantidaddePersonas.SelectedIndex = 0;
+            {
+                TIPOA = false;
+            }
+            if (cmbTipodeCabaña.Text == "Tipo B")
+            {
+                TIPOB = true;
+            }
+            else
+            {
+                TIPOB = false;
+            }
+            if (cmbTipodeCabaña.Text == "")
+            {
+                cmbCantidaddePersonas.Enabled = false;
+
+            }
+            else
+            {
+                cmbCantidaddePersonas.Enabled = true;
+            }
+            if (TIPOA)
+            {
+                i = 1;
+                cmbCantidaddePersonas.Items.Clear();
+                while (i <=4)
+                { 
+                cmbCantidaddePersonas.Items.Add(i);
+                    i++;
+                }
+            }
+            if (TIPOB)
+            {
+                i = 1;
+                cmbCantidaddePersonas.Items.Clear();
+                while (i <= 8)
+                {
+                    cmbCantidaddePersonas.Items.Add(i);
+                    i++;
+                }
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -102,6 +160,60 @@ namespace pryOttonelloPalomaCABAÑAS
         private void rbmTarjeta_CheckedChanged(object sender, EventArgs e)
         {
             cmbTarjeta.Enabled = true;
+        }
+
+        private void cmbCantidaddePersonas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbCantidaddePersonas.Text == "")
+            {
+                cmbDias.Enabled = false;
+
+            }
+            else
+            {
+                cmbDias.Enabled = true;
+            }
+
+        }
+
+        private void cmbDias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbDias.Text == "")
+            {
+                cmbTarjeta.Enabled = false;
+            }
+            else
+            {
+                cmbTarjeta.Enabled = true;
+            }
+        }
+
+        private void cmbTarjeta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            if (cmbTipodeCabaña.Text == "")
+            {
+                MessageBox.Show("Elija un tipo de cabaña");
+            }
+            else if (cmbCantidaddePersonas.Text == "")
+            {
+                MessageBox.Show("Elija un número de personas");
+            }
+            else if (cmbDias.Text == "")
+            {
+                MessageBox.Show("Elija la cantidad de días");
+            }
+        }
+
+        private void btmCancelar_Click(object sender, EventArgs e)
+        {
+          //  txtNombre.Text == "";
+            //txtTelefono.Text == !
+
         }
     }
 }
