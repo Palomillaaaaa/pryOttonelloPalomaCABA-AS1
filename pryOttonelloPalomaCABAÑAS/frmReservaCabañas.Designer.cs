@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReservaCabañas));
             gpbTipodeCabañas = new GroupBox();
             cmbDias = new ComboBox();
             lblCantidaddeDias = new Label();
@@ -338,6 +339,7 @@
             Controls.Add(gpbFormasdePago);
             Controls.Add(gpbAdicionales);
             Controls.Add(gpbTipodeCabañas);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmReservaCabañas";
             Text = "frmReservaCabañas";
             gpbTipodeCabañas.ResumeLayout(false);
